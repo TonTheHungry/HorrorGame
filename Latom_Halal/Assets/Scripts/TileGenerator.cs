@@ -8,7 +8,7 @@ public class TileGenerator : MonoBehaviour
     private Vector3 newPoint;
     private GameObject generatedTile;
     enum GeneratedType { Left, Right, Straight, Big };
-    GeneratedType previousGen;
+    GameObject previousTile;
     GeneratedType currentGen;
     private int r;
     private int left, right;
@@ -28,7 +28,7 @@ public class TileGenerator : MonoBehaviour
         newPoint = plrPosition + new Vector3(0, 0, 7);
         transform.position = newPoint;
         generatedTile = Instantiate(Tiles[r], newPoint, Quaternion.identity);
-        print(newPoint);
+
     }
 
     // Update is called once per frame
@@ -37,7 +37,6 @@ public class TileGenerator : MonoBehaviour
         plrPosition = Node.transform.position;
         if ((plrPosition - newPoint).sqrMagnitude < 20000)
         {
-            previousGen = currentGen;
             r = Random.Range(0, 3);
             makeTileType(r);
             
@@ -49,7 +48,8 @@ public class TileGenerator : MonoBehaviour
         if (num == 0 && right <= 0)
         {
             left = 3;
-                currentGen = GeneratedType.Left;
+            Destroy(previousTile.transform.Find("SideL").gameObject);
+            currentGen = GeneratedType.Left;
                 newPoint = newPoint + new Vector3(-8, 0, 0);
                 generatedTile = Instantiate(Tiles[num], newPoint, Quaternion.identity);
                 transform.position = newPoint;
@@ -57,6 +57,7 @@ public class TileGenerator : MonoBehaviour
         if (num == 1 && left <= 0)
         {
             right = 3;
+            Destroy(previousTile.transform.Find("SideR").gameObject);
                 currentGen = GeneratedType.Right;
                 newPoint = newPoint + new Vector3(8, 0, 0);
                 generatedTile = Instantiate(Tiles[num], newPoint, Quaternion.identity);
@@ -68,8 +69,9 @@ public class TileGenerator : MonoBehaviour
             right--;
             currentGen = GeneratedType.Straight;
             newPoint = newPoint + new Vector3(0, 0, 8);
-            generatedTile = Instantiate(Tiles[num], newPoint, Quaternion.identity);
+            generatedTile = Instantiate(Tiles[num], newPoint, Quaternion.Euler(new Vector3(0, 90, 0)));
             transform.position = newPoint;
         }
+        previousTile = generatedTile;
     }
 }
