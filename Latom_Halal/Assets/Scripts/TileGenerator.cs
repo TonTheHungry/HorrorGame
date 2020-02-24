@@ -11,7 +11,7 @@ public class TileGenerator : MonoBehaviour
     GeneratedType previousGen;
     GeneratedType currentGen;
     private int r;
-    private int type;
+    private int left, right;
 
     // Start is called before the first frame update
     void Start()
@@ -39,46 +39,37 @@ public class TileGenerator : MonoBehaviour
         {
             previousGen = currentGen;
             r = Random.Range(0, 3);
-            setTileType(r);
-            newPoint = newPoint + new Vector3(0, 0, 7);
-            generatedTile = Instantiate(Tiles[type], newPoint, Quaternion.identity);
-            transform.position = newPoint;
+            makeTileType(r);
+            
         }
 
     }
-    private void setTileType(int num)
+    private void makeTileType(int num)
     {
-        if (num == 0)
+        if (num == 0 && right <= 0)
         {
-            if (previousGen != GeneratedType.Left)
-            {
+            left = 3;
                 currentGen = GeneratedType.Left;
-                type = num;
-            }
-            else
-            {
-                currentGen = GeneratedType.Right;
-                type = 1;
-            }
-
+                newPoint = newPoint + new Vector3(-8, 0, 0);
+                generatedTile = Instantiate(Tiles[num], newPoint, Quaternion.identity);
+                transform.position = newPoint;
         }
-        if (num == 1)
+        if (num == 1 && left <= 0)
         {
-            if (previousGen != GeneratedType.Right)
-            {
+            right = 3;
                 currentGen = GeneratedType.Right;
-                type = r;
-            }
-            else
-            {
-                currentGen = GeneratedType.Left;
-                type = 0;
-            }
+                newPoint = newPoint + new Vector3(8, 0, 0);
+                generatedTile = Instantiate(Tiles[num], newPoint, Quaternion.identity);
+                transform.position = newPoint;
         }
         if (num == 2)
         {
+            left--;
+            right--;
             currentGen = GeneratedType.Straight;
-            type = r;
+            newPoint = newPoint + new Vector3(0, 0, 8);
+            generatedTile = Instantiate(Tiles[num], newPoint, Quaternion.identity);
+            transform.position = newPoint;
         }
     }
 }
