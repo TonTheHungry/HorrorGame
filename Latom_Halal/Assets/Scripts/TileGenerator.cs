@@ -7,27 +7,18 @@ public class TileGenerator : MonoBehaviour
     private Vector3 plrPosition;
     private Vector3 newPoint;
     private GameObject generatedTile;
-    enum GeneratedType { Left, Right, Straight, Big };
     GameObject previousTile;
-    GeneratedType currentGen;
     private int r;
     private int left, right;
 
     // Start is called before the first frame update
     void Start()
     {
-        r = Random.Range(0, 3);
-        if (r == 0)
-            currentGen = GeneratedType.Left;
-        if (r == 1)
-            currentGen = GeneratedType.Right;
-        if (r == 2)
-            currentGen = GeneratedType.Straight;
-
         plrPosition = Node.transform.position;
-        newPoint = plrPosition + new Vector3(0, 0, 7);
+        newPoint = plrPosition + new Vector3(0, 0, 10);
         transform.position = newPoint;
-        generatedTile = Instantiate(Tiles[r], newPoint, Quaternion.identity);
+        generatedTile = Instantiate(Tiles[2], newPoint, Quaternion.Euler(new Vector3(0, 90, 0)));
+        previousTile = generatedTile;
 
     }
 
@@ -39,7 +30,6 @@ public class TileGenerator : MonoBehaviour
         {
             r = Random.Range(0, 3);
             makeTileType(r);
-            
         }
 
     }
@@ -48,18 +38,26 @@ public class TileGenerator : MonoBehaviour
         if (num == 0 && right <= 0)
         {
             left = 3;
-            Destroy(previousTile.transform.Find("SideL").gameObject);
-            currentGen = GeneratedType.Left;
-                newPoint = newPoint + new Vector3(-8, 0, 0);
+            if (previousTile.transform.Find("SideL") != null)
+            {
+                GameObject side = previousTile.transform.Find("SideL").gameObject;
+                side.transform.Rotate(new Vector3(0, 0, 90));
+                side.transform.localPosition = new Vector3(-5, 5, 0);
+            }
+                newPoint = newPoint + new Vector3(-10, 0, 0);
                 generatedTile = Instantiate(Tiles[num], newPoint, Quaternion.identity);
                 transform.position = newPoint;
         }
         if (num == 1 && left <= 0)
         {
             right = 3;
-            Destroy(previousTile.transform.Find("SideR").gameObject);
-                currentGen = GeneratedType.Right;
-                newPoint = newPoint + new Vector3(8, 0, 0);
+            if (previousTile.transform.Find("SideR") != null)
+            {
+                GameObject side = previousTile.transform.Find("SideR").gameObject;
+                side.transform.Rotate(new Vector3(0, 0, 90));
+                side.transform.localPosition = new Vector3(-5, 5, 0);
+            }
+                newPoint = newPoint + new Vector3(10, 0, 0);
                 generatedTile = Instantiate(Tiles[num], newPoint, Quaternion.identity);
                 transform.position = newPoint;
         }
@@ -67,8 +65,7 @@ public class TileGenerator : MonoBehaviour
         {
             left--;
             right--;
-            currentGen = GeneratedType.Straight;
-            newPoint = newPoint + new Vector3(0, 0, 8);
+            newPoint = newPoint + new Vector3(0, 0, 10);
             generatedTile = Instantiate(Tiles[num], newPoint, Quaternion.Euler(new Vector3(0, 90, 0)));
             transform.position = newPoint;
         }
