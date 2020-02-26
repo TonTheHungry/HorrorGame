@@ -477,10 +477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Node: {fileID: 1822462983}
-  Tiles:
-  - {fileID: 372830545}
-  - {fileID: 1999608703}
-  - {fileID: 1760317606607415255, guid: 960a778dec727ae4c9e135b168e7b682, type: 3}
+  Tile: {fileID: 1760317606607415255, guid: 960a778dec727ae4c9e135b168e7b682, type: 3}
 --- !u!4 &1442998482
 Transform:
   m_ObjectHideFlags: 0
