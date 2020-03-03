@@ -595,5 +595,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1760317606607415255, guid: 742b7d29386e9d14b92ccde89235565c,
         type: 3}
+    - target: {fileID: 8804190607740830523, guid: 426b0d243dfb42c41ab48a6393d516a6,
+        type: 3}
+      propertyPath: DownRoom
+      value: 
+      objectReference: {fileID: 1760317606607415255, guid: b45895860698a4e479db0968dc34b93b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 426b0d243dfb42c41ab48a6393d516a6, type: 3}
