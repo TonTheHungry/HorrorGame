@@ -2,6 +2,7 @@
 
 public class TileGenerator : MonoBehaviour
 {
+<<<<<<< HEAD
     public GameObject Node;
     public GameObject Tile;
     public GameObject Room;
@@ -12,6 +13,15 @@ public class TileGenerator : MonoBehaviour
     private GameObject previousTile;
     private int left, right, room, r,t;
     private bool madeDownRoom;
+=======
+    public GameObject Node,Tile,Room,Generator;
+    public bool bot, top;
+    private Vector3 plrPosition;
+    private Vector3 newPoint;
+    private GameObject generatedTile;
+    GameObject previousTile;
+    private int left, right, room, r,t,v;
+>>>>>>> d198ebfac14b1fa4428b727c9e9c761f84840fdb
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +44,7 @@ public class TileGenerator : MonoBehaviour
         {
             t = Random.Range(0, 3);
             r = Random.Range(0, 5);
+            v = Random.Range(0, 10);
             makeRoomType(r);
             makeTileType(t);
         }
@@ -44,11 +55,60 @@ public class TileGenerator : MonoBehaviour
         //generate room tile
         if (num == 0 && room <= 0)
         {
+<<<<<<< HEAD
             makeNormalRoom();
         }
        if(num == 1 && room <=0 && !madeDownRoom)
         {
             makeDownRoom();
+=======
+           if (previousTile.name == "Straight")
+           {
+                room = 20;
+                newPoint = newPoint + new Vector3(0, 0, 25);
+                generatedTile = Instantiate(Room, newPoint, Quaternion.identity);
+                generatedTile.name = "Room";
+                transform.position = newPoint;
+                previousTile = generatedTile;
+            }
+           if (previousTile.name == "Right")
+           {
+                room = 20;
+                newPoint = newPoint + new Vector3(25, 0, 0);
+                generatedTile = Instantiate(Room, newPoint, Quaternion.identity);
+                generatedTile.name = "Room";
+                transform.position = newPoint;
+                previousTile = generatedTile;
+            }
+           if (previousTile.name == "Left")
+           {
+                room = 20;
+                newPoint = newPoint + new Vector3(-25, 0, 0);
+                generatedTile = Instantiate(Room, newPoint, Quaternion.identity);
+                generatedTile.name = "Room";
+                transform.position = newPoint;
+                previousTile = generatedTile;
+
+            }
+
+>>>>>>> d198ebfac14b1fa4428b727c9e9c761f84840fdb
+        }
+    }
+    private void tryVertical(int num)
+    {
+        if (num == 6 && bot == true)
+        {
+            //try lower room
+           GameObject newGenerator = Instantiate(Generator, newPoint - new Vector3(0,20,0), Quaternion.identity);
+            Debug.Log("lower Room");
+
+        }
+        if (num == 9 && top == true)
+        {
+            //try higher room
+            GameObject newGenerator = Instantiate(Generator, newPoint - new Vector3(0, 20, 0), Quaternion.identity);
+             Debug.Log("higher Room");
+
         }
     }
     private void makeTileType(int num)
