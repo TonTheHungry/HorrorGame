@@ -2,14 +2,13 @@
 
 public class TileGenerator : MonoBehaviour
 {
-    public GameObject Node;
-    public GameObject Tile;
-    public GameObject Room;
+    public GameObject Node,Tile,Room,Generator;
+    public bool bot, top;
     private Vector3 plrPosition;
     private Vector3 newPoint;
     private GameObject generatedTile;
     GameObject previousTile;
-    private int left, right, room, r,t;
+    private int left, right, room, r,t,v;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +31,7 @@ public class TileGenerator : MonoBehaviour
         {
             t = Random.Range(0, 3);
             r = Random.Range(0, 5);
+            v = Random.Range(0, 10);
             makeRoomType(r);
             makeTileType(t);
         }
@@ -70,8 +70,26 @@ public class TileGenerator : MonoBehaviour
                 previousTile = generatedTile;
 
             }
+
         }
       
+    }
+    private void tryVertical(int num)
+    {
+        if (num == 6 && bot == true)
+        {
+            //try lower room
+           GameObject newGenerator = Instantiate(Generator, newPoint - new Vector3(0,20,0), Quaternion.identity);
+            Debug.Log("lower Room");
+
+        }
+        if (num == 9 && top == true)
+        {
+            //try higher room
+            GameObject newGenerator = Instantiate(Generator, newPoint - new Vector3(0, 20, 0), Quaternion.identity);
+             Debug.Log("higher Room");
+
+        }
     }
     private void makeTileType(int num)
     {
