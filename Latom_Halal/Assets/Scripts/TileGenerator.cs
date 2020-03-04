@@ -2,7 +2,7 @@
 
 public class TileGenerator : MonoBehaviour
 {
-    public GameObject Node,Tile,Room,DownRoom,Generator;
+    public GameObject Node,Tile,Room,DownRoom,Generator,MapContainer;
     public bool madeDownRoom;
     public int Y_Mod = 0;
     private Vector3 plrPosition;
@@ -21,6 +21,7 @@ public class TileGenerator : MonoBehaviour
             generatedTile = Instantiate(Tile, newPoint, Quaternion.Euler(new Vector3(0, 90, 0)));
             generatedTile.name = "Straight";
             previousTile = generatedTile;
+            generatedTile.transform.parent = MapContainer.transform;
     }
 
     // Update is called once per frame
@@ -68,6 +69,7 @@ public class TileGenerator : MonoBehaviour
             makeStraightTile();
         }
         previousTile = generatedTile;
+        generatedTile.transform.parent = MapContainer.transform;
     }
     private void makeLeftTile()
     {
@@ -85,7 +87,7 @@ public class TileGenerator : MonoBehaviour
             generatedTile = Instantiate(Tile, newPoint, Quaternion.identity);
             generatedTile.name = "Left";
             transform.position = newPoint;
-            //new generator here
+            Destroy(previousTile.transform.Find("SideL").Find("Door").gameObject);
         }
         else
         {
@@ -112,7 +114,7 @@ public class TileGenerator : MonoBehaviour
             generatedTile = Instantiate(Tile, newPoint, Quaternion.identity);
             generatedTile.name = "Right";
             transform.position = newPoint;
-            //new generator here
+            Destroy(previousTile.transform.Find("SideR").Find("Door").gameObject);
         }
         else
         {
@@ -146,7 +148,7 @@ public class TileGenerator : MonoBehaviour
             generatedTile = Instantiate(Tile, newPoint, Quaternion.Euler(new Vector3(0, 90, 0)));
             generatedTile.name = "Straight";
             transform.position = newPoint;
-            //new generator here
+            Destroy(previousTile.transform.Find("SideF").Find("Door").gameObject);
         }
         else
         {
@@ -164,8 +166,9 @@ public class TileGenerator : MonoBehaviour
             room = 20;
             newPoint = newPoint + new Vector3(0, 0, 25);
             newPoint.y = Y_Mod;
-            generatedTile = Instantiate(Room, newPoint, Quaternion.identity);
+            generatedTile = Instantiate(Room, newPoint, Quaternion.Euler(new Vector3(0, -90, 0)));
             generatedTile.name = "Room";
+            Destroy(generatedTile.transform.Find("SideB").Find("Door").gameObject);
             transform.position = newPoint;
             previousTile = generatedTile;
         }
@@ -174,8 +177,9 @@ public class TileGenerator : MonoBehaviour
             room = 20;
             newPoint = newPoint + new Vector3(25, 0, 0);
             newPoint.y = Y_Mod;
-            generatedTile = Instantiate(Room, newPoint, Quaternion.identity);
+            generatedTile = Instantiate(Room, newPoint, Quaternion.Euler(new Vector3(0, -90, 0)));
             generatedTile.name = "Room";
+            Destroy(generatedTile.transform.Find("SideL").Find("Door").gameObject);
             transform.position = newPoint;
             previousTile = generatedTile;
         }
@@ -184,25 +188,44 @@ public class TileGenerator : MonoBehaviour
             room = 20;
             newPoint = newPoint + new Vector3(-25, 0, 0);
             newPoint.y = Y_Mod;
-            generatedTile = Instantiate(Room, newPoint, Quaternion.identity);
+            generatedTile = Instantiate(Room, newPoint, Quaternion.Euler(new Vector3(0, -90, 0)));
             generatedTile.name = "Room";
+            Destroy(generatedTile.transform.Find("SideR").Find("Door").gameObject);
             transform.position = newPoint;
             previousTile = generatedTile;
         }
+        generatedTile.transform.parent = MapContainer.transform;
     }
     private void makeDownRoom()
     {
         madeDownRoom = true;
+        GameObject beforeDownRoom = previousTile;
         makeNormalRoom();
         Destroy(generatedTile);
-        generatedTile = Instantiate(DownRoom, previousTile.transform.position, Quaternion.identity);
+        generatedTile = Instantiate(DownRoom, previousTile.transform.position, Quaternion.Euler(new Vector3(0, -90, 0)));
         generatedTile.name = "Room";
-        previousTile = generatedTile;
+        if (beforeDownRoom.name == "Left")
+            Destroy(generatedTile.transform.Find("SideR").Find("Door").gameObject);
+        if (beforeDownRoom.name == "Right")
+            Destroy(generatedTile.transform.Find("SideL").Find("Door").gameObject);
+        if (beforeDownRoom.name == "Straight")
+            Destroy(generatedTile.transform.Find("SideB").Find("Door").gameObject);
 
-        GameObject g = Instantiate(Room, previousTile.transform.position - new Vector3(0,30,0), Quaternion.identity);
-        GameObject gen = Instantiate(Generator, g.transform.position + new Vector3(0,0,15), Quaternion.identity);
-        gen.GetComponent<TileGenerator>().Y_Mod = Y_Mod-30;
+        previousTile = generatedTile;
+        generatedTile.transform.parent = MapContainer.transform;
+
+        makeNewFloor();
+    }
+
+    private void makeNewFloor()
+    {
+        GameObject g = Instantiate(Room, previousTile.transform.position - new Vector3(0, 30, 0), Quaternion.Euler(new Vector3(0, -90, 0)));
+        Destroy(g.transform.Find("SideF").Find("Door").gameObject);
+
+        GameObject gen = Instantiate(Generator, g.transform.position + new Vector3(0, 0, 15), Quaternion.identity);
+        gen.GetComponent<TileGenerator>().Y_Mod = Y_Mod - 30;
         gen.GetComponent<TileGenerator>().Generator = Generator;
+        gen.GetComponent<TileGenerator>().MapContainer = MapContainer;
         gen.GetComponent<TileGenerator>().Node = Node;
         gen.GetComponent<TileGenerator>().Tile = Tile;
         gen.GetComponent<TileGenerator>().Room = Room;
