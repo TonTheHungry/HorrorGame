@@ -2,7 +2,7 @@
 
 public class TileGenerator : MonoBehaviour
 {
-    public GameObject Node,Tile,Room,DownRoom,Generator,MapContainer;
+    public GameObject Node,Tile,Room,DownRoom,Generator,MapContainer,Item;
     public bool madeDownRoom;
     public int Y_Mod = 0;
     private Vector3 plrPosition;
@@ -22,6 +22,10 @@ public class TileGenerator : MonoBehaviour
             generatedTile.name = "Straight";
             previousTile = generatedTile;
             generatedTile.transform.parent = MapContainer.transform;
+            if (Y_Mod == 0)
+            {
+            Node.transform.position = newPoint + new Vector3(0, 10, 0);
+            }
     }
 
     // Update is called once per frame
@@ -34,6 +38,19 @@ public class TileGenerator : MonoBehaviour
             r = Random.Range(0, 9);
             makeRoomType(r);
             makeTileType(t);
+            if(t == 1 && r == 4 && generatedTile.name == "Room")
+            {
+                if (!GameObject.Find("Item"))
+                {
+                    GameObject _item = Instantiate(Item, generatedTile.transform.position, Quaternion.identity);
+                    _item.name = "Item";
+                    Debug.Log("ITEM SPAWNED");
+                }
+                else
+                {
+                    Debug.Log("ITEm ALREADY SPAWNED");
+                }
+            }
         }
     }
 
@@ -225,6 +242,7 @@ public class TileGenerator : MonoBehaviour
 
         GameObject gen = Instantiate(Generator, g.transform.position + new Vector3(0, 0, 15), Quaternion.identity);
         gen.GetComponent<TileGenerator>().Y_Mod = Y_Mod - 30;
+        gen.GetComponent<TileGenerator>().Item = Item;
         gen.GetComponent<TileGenerator>().Generator = Generator;
         gen.GetComponent<TileGenerator>().MapContainer = MapContainer;
         gen.GetComponent<TileGenerator>().Node = Node;

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/EnvironmentScene.unity
+- path: Assets/Scenes/Taveon'sTestScene(Don't Edit!).unity
   isLoaded: 1
   isActive: 1
