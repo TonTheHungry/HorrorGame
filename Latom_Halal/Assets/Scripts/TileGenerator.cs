@@ -31,7 +31,7 @@ public class TileGenerator : MonoBehaviour
         if ((plrPosition - newPoint).sqrMagnitude < 10000000)
         {
             t = Random.Range(0, 3);
-            r = Random.Range(0, 14);
+            r = Random.Range(0, 9);
             makeRoomType(r);
             makeTileType(t);
         }
@@ -39,7 +39,7 @@ public class TileGenerator : MonoBehaviour
 
     private void makeRoomType(int num)
     {
-        if (num == 13 && room <= 0 && !madeDownRoom)
+        if (num == 8 && room <= 0 && !madeDownRoom)
         {
             makeDownRoom();
         }
@@ -221,6 +221,7 @@ public class TileGenerator : MonoBehaviour
     {
         GameObject g = Instantiate(Room, previousTile.transform.position - new Vector3(0, 30, 0), Quaternion.Euler(new Vector3(0, -90, 0)));
         Destroy(g.transform.Find("SideF").Find("Door").gameObject);
+        Destroy(g.transform.Find("Ceil").gameObject);
 
         GameObject gen = Instantiate(Generator, g.transform.position + new Vector3(0, 0, 15), Quaternion.identity);
         gen.GetComponent<TileGenerator>().Y_Mod = Y_Mod - 30;
