@@ -60,9 +60,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Friske\_FPS Player\FixedInterpolation\InterpolatedTransform.cs" />
+    <Compile Include="Assets\Friske\_FPS Player\FixedInterpolation\InterpolatedTransformUpdater.cs" />
+    <Compile Include="Assets\Friske\_FPS Player\FixedInterpolation\InterpolationController.cs" />
+    <Compile Include="Assets\Friske\_FPS Player\Scripts\Animate\AnimateLean.cs" />
+    <Compile Include="Assets\Friske\_FPS Player\Scripts\CameraMovement.cs" />
+    <Compile Include="Assets\Friske\_FPS Player\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Friske\_FPS Player\Scripts\PlayerInput.cs" />
+    <Compile Include="Assets\Friske\_FPS Player\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\CharMovement.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\MovementController.cs" />
-    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\TileGenerator.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Theresa Gill/source/3D Horror Game/HorrorGame/Latom_Halal/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
