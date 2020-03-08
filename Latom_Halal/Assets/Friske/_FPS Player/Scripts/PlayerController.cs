@@ -29,6 +29,10 @@ public class PlayerController : MonoBehaviour
     PlayerInput playerInput;
     AnimateLean animateLean;
 
+    //Theresa's addition
+    public AudioSource walkSound;
+    public AudioSource runSound;
+
     bool canInteract;
     bool canGrabLedge;
     bool controlledSlide;
@@ -48,6 +52,7 @@ public class PlayerController : MonoBehaviour
         CreateVaultHelper();
         playerInput = GetComponent<PlayerInput>();
         movement = GetComponent<PlayerMovement>();
+        //walkSound = GetComponent<AudioSource>();
 
         if (GetComponentInChildren<AnimateLean>())
             animateLean = GetComponentInChildren<AnimateLean>();
@@ -100,6 +105,37 @@ public class PlayerController : MonoBehaviour
             if (playerInput.input.magnitude > 0.02f)
                 status = Status.moving;
         }
+        //Theresa's Audio changes
+        //If moving or climbing ladder
+        if ((int)status == 1 || (int)status == 4)
+        {
+            //if moving but not jumping
+            if (!playerInput.Jump())
+            {
+                //if sprinting
+                if (playerInput.run && (!runSound.isPlaying))
+                {
+                    walkSound.Stop();
+                    runSound.Play();
+                }
+                // player must be walking
+                else
+                {
+                    if (!walkSound.isPlaying)
+                    {
+                        runSound.Stop();
+                        walkSound.Play();
+                    }
+                }
+            }
+        }
+        else
+        {
+            walkSound.Stop();
+            runSound.Stop();
+        }
+        
+
     }
 
     void UpdateLean()
@@ -151,7 +187,7 @@ public class PlayerController : MonoBehaviour
         if (playerInput.run && status == Status.crouching)
             Uncrouch();
 
-        movement.Move(playerInput.input, playerInput.run, (status == Status.crouching));
+        movement.Move(playerInput.input, playerInput.run, status == Status.crouching);
         if (movement.grounded && playerInput.Jump())
         {
             if (status == Status.crouching)
@@ -262,7 +298,7 @@ public class PlayerController : MonoBehaviour
         move.y = input.y * movement.walkSpeed;
 
         bool goToGround = false;
-        goToGround = (move.y < -0.02f && movement.grounded);
+        goToGround = move.y < -0.02f && movement.grounded;
 
         if (playerInput.Jump())
         {
@@ -323,7 +359,7 @@ public class PlayerController : MonoBehaviour
         if (!hasWallToSide(wallDir) || movement.grounded)
             status = Status.moving;
 
-        movement.Move(move, movement.runSpeed, (1f - s) + (s / 4f));
+        movement.Move(move, movement.runSpeed, 1f - s + (s / 4f));
     }
 
     void CheckForWallrun()
@@ -352,9 +388,9 @@ public class PlayerController : MonoBehaviour
         //Check for ladder in front of player
         Vector3 top = transform.position + (transform.right * 0.25f * dir);
         Vector3 bottom = top - (transform.up * radius);
-        top += (transform.up * radius);
+        top += transform.up * radius;
 
-        return (Physics.CapsuleCastAll(top, bottom, 0.25f, transform.right * dir, 0.05f, wallrunLayer).Length >= 1);
+        return Physics.CapsuleCastAll(top, bottom, 0.25f, transform.right * dir, 0.05f, wallrunLayer).Length >= 1;
     }
     /*********************************************************************/
 
@@ -455,7 +491,7 @@ public class PlayerController : MonoBehaviour
         if (status == Status.vaulting) return;
 
         float checkDis = 0.05f;
-        checkDis += (movement.controller.velocity.magnitude / 16f); //Check farther if moving faster
+        checkDis += movement.controller.velocity.magnitude / 16f; //Check farther if moving faster
         if(hasObjectInfront(checkDis, vaultLayer) && playerInput.Jump())
         {
             if (Physics.SphereCast(transform.position + (transform.forward * (radius - 0.25f)), 0.25f, transform.forward, out var sphereHit, checkDis, vaultLayer))
@@ -496,6 +532,6 @@ public class PlayerController : MonoBehaviour
         Vector3 top = transform.position + (transform.forward * 0.25f);
         Vector3 bottom = top - (transform.up * halfheight);
 
-        return (Physics.CapsuleCastAll(top, bottom, 0.25f, transform.forward, dis, layer).Length >= 1);
+        return Physics.CapsuleCastAll(top, bottom, 0.25f, transform.forward, dis, layer).Length >= 1;
     }
 }
