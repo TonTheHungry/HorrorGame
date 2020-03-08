@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Friske/Scenes/TestScene.unity
+=======
+- path: Assets/Scenes/Taveon'sTestScene(Don't Edit!).unity
+>>>>>>> 51a20fbb56a5c30a7551db7ddb560af5445e99e3
   isLoaded: 1
   isActive: 1

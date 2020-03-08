@@ -2,7 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+<<<<<<< HEAD:Latom_Halal/Assets/Scripts/CharMovement.cs
 public class CharMovement : MonoBehaviour
+=======
+public class CharMovement: MonoBehaviour
+>>>>>>> 51a20fbb56a5c30a7551db7ddb560af5445e99e3:Latom_Halal/Assets/Scripts/PlayerMovement.cs
 {
     public CharacterController controller;
     public float speed = 12f;
