@@ -32,6 +32,10 @@ public class PlayerController : MonoBehaviour
     //Theresa's addition
     public AudioSource walkSound;
     public AudioSource runSound;
+    public AudioSource idleSound;
+    private AudioSource previousSource;
+    private int firsttime = 1;// first time to call the PlaySound method
+   
 
     bool canInteract;
     bool canGrabLedge;
@@ -47,13 +51,13 @@ public class PlayerController : MonoBehaviour
 
     int wallDir = 1;
 
+    
     private void Start()
     {
         CreateVaultHelper();
         playerInput = GetComponent<PlayerInput>();
         movement = GetComponent<PlayerMovement>();
-        //walkSound = GetComponent<AudioSource>();
-
+        
         if (GetComponentInChildren<AnimateLean>())
             animateLean = GetComponentInChildren<AnimateLean>();
 
@@ -63,6 +67,12 @@ public class PlayerController : MonoBehaviour
         halfradius = radius / 2f;
         halfheight = height / 2f;
         rayDistance = halfheight + radius + .1f;
+
+        //initialize sound with quietness of idle
+        previousSource = idleSound;
+        PlaySound(idleSound);
+
+
     }
 
     /******************************* UPDATE ******************************/
@@ -80,8 +90,7 @@ public class PlayerController : MonoBehaviour
         CheckLadderClimbing();
         UpdateLedgeGrabbing();
         CheckForVault();
-        //Add new check to change status right here
-
+        
         //Misc
         UpdateLean();
     }
@@ -106,37 +115,26 @@ public class PlayerController : MonoBehaviour
                 status = Status.moving;
         }
         //Theresa's Audio changes
-        //If moving or climbing ladder
-        if ((int)status == 1 || (int)status == 4)
-        {
-            //if moving but not jumping
-            if (!playerInput.Jump())
+        if ((int)status == 0)
+            PlaySound(idleSound);
+        else if ((int)status ==1)
             {
-                //if sprinting
-                if (playerInput.run && (!runSound.isPlaying))
-                {
-                    walkSound.Stop();
-                    runSound.Play();
-                }
-                // player must be walking
-                else
-                {
-                    if (!walkSound.isPlaying)
-                    {
-                        runSound.Stop();
-                        walkSound.Play();
-                    }
-                }
-            }
-        }
-        else
-        {
-            walkSound.Stop();
-            runSound.Stop();
-        }
-        
+                 if (playerInput.Jump())
 
-    }
+                     PlaySound(idleSound);
+
+                 else if (playerInput.run)
+                 
+                     PlaySound(runSound);
+                 
+                 else
+
+                     PlaySound(walkSound);
+
+            }
+
+
+    }//end UpdateMovingStatus()
 
     void UpdateLean()
     {
@@ -534,4 +532,20 @@ public class PlayerController : MonoBehaviour
 
         return Physics.CapsuleCastAll(top, bottom, 0.25f, transform.forward, dis, layer).Length >= 1;
     }
+
+    void PlaySound(AudioSource incomingSource)
+    {
+        if (incomingSource == previousSource)
+        {
+            //do nothing
+        }
+        else
+        {
+            //Debug.Log("previous " + previousSource.name);
+            previousSource.Stop();
+            incomingSource.Play();
+            previousSource = incomingSource;
+        }
+    }//end method
+
 }
