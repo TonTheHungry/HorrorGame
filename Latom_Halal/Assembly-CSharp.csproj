@@ -64,10 +64,12 @@
     <Compile Include="Assets\Friske\_FPS Player\FixedInterpolation\InterpolatedTransformUpdater.cs" />
     <Compile Include="Assets\Friske\_FPS Player\FixedInterpolation\InterpolationController.cs" />
     <Compile Include="Assets\Friske\_FPS Player\Scripts\Animate\AnimateLean.cs" />
+    <Compile Include="Assets\Friske\_FPS Player\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Friske\_FPS Player\Scripts\CameraMovement.cs" />
     <Compile Include="Assets\Friske\_FPS Player\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Friske\_FPS Player\Scripts\PlayerInput.cs" />
     <Compile Include="Assets\Friske\_FPS Player\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Friske\_FPS Player\Scripts\Sound.cs" />
     <Compile Include="Assets\Scripts\CharMovement.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\MovementController.cs" />

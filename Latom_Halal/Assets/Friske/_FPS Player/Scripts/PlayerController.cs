@@ -16,6 +16,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private LayerMask wallrunLayer;
 
+    //Theresa
+    [SerializeField] private AudioClip idle;
+    [SerializeField] private AudioClip walking;
+    [SerializeField] private AudioClip running;
+    [SerializeField] private AudioClip organ;
+
     GameObject vaultHelper;
 
     Vector3 wallNormal = Vector3.zero;
@@ -28,14 +34,6 @@ public class PlayerController : MonoBehaviour
     PlayerMovement movement;
     PlayerInput playerInput;
     AnimateLean animateLean;
-
-    //Theresa's addition
-    public AudioSource walkSound;
-    public AudioSource runSound;
-    public AudioSource idleSound;
-    private AudioSource previousSource;
-    private int firsttime = 1;// first time to call the PlaySound method
-   
 
     bool canInteract;
     bool canGrabLedge;
@@ -51,13 +49,12 @@ public class PlayerController : MonoBehaviour
 
     int wallDir = 1;
 
-    
     private void Start()
     {
         CreateVaultHelper();
         playerInput = GetComponent<PlayerInput>();
         movement = GetComponent<PlayerMovement>();
-        
+
         if (GetComponentInChildren<AnimateLean>())
             animateLean = GetComponentInChildren<AnimateLean>();
 
@@ -67,12 +64,6 @@ public class PlayerController : MonoBehaviour
         halfradius = radius / 2f;
         halfheight = height / 2f;
         rayDistance = halfheight + radius + .1f;
-
-        //initialize sound with quietness of idle
-        previousSource = idleSound;
-        PlaySound(idleSound);
-
-
     }
 
     /******************************* UPDATE ******************************/
@@ -90,7 +81,8 @@ public class PlayerController : MonoBehaviour
         CheckLadderClimbing();
         UpdateLedgeGrabbing();
         CheckForVault();
-        
+        //Add new check to change status right here
+
         //Misc
         UpdateLean();
     }
@@ -114,27 +106,40 @@ public class PlayerController : MonoBehaviour
             if (playerInput.input.magnitude > 0.02f)
                 status = Status.moving;
         }
-        //Theresa's Audio changes
+
+        //Theresa audio changes
+        // 
+
+        //else if ((int)status == 1)
+        //{
+        //    if (playerInput.Jump())
+        //AudioManager.Instance.PlaySFX(idle);
+
+        //   else if (playerInput.run)
+        //AudioManager.Instance.PlaySFX(running);
+
+        //    else
+        // AudioManager.Instance.PlaySFX(walking);
+
+
+        //}
         if ((int)status == 0)
-            PlaySound(idleSound);
+            AudioManager.instance.Play("idle");
         else if ((int)status ==1)
-            {
-                 if (playerInput.Jump())
+        {
+            if (playerInput.Jump())
+                //FindObjectOfType<AudioManager>().Play("idle");
+                AudioManager.instance.Play("idle");
+            else if (playerInput.run)
+                //FindObjectOfType<AudioManager>().Play("running");
+                AudioManager.instance.Play("running");
+            else
+                //FindObjectOfType<AudioManager>().Play("walking");
+                AudioManager.instance.Play("walking");
+        }
 
-                     PlaySound(idleSound);
-
-                 else if (playerInput.run)
-                 
-                     PlaySound(runSound);
-                 
-                 else
-
-                     PlaySound(walkSound);
-
-            }
-
-
-    }//end UpdateMovingStatus()
+        
+    }
 
     void UpdateLean()
     {
@@ -185,7 +190,7 @@ public class PlayerController : MonoBehaviour
         if (playerInput.run && status == Status.crouching)
             Uncrouch();
 
-        movement.Move(playerInput.input, playerInput.run, status == Status.crouching);
+        movement.Move(playerInput.input, playerInput.run, (status == Status.crouching));
         if (movement.grounded && playerInput.Jump())
         {
             if (status == Status.crouching)
@@ -296,7 +301,7 @@ public class PlayerController : MonoBehaviour
         move.y = input.y * movement.walkSpeed;
 
         bool goToGround = false;
-        goToGround = move.y < -0.02f && movement.grounded;
+        goToGround = (move.y < -0.02f && movement.grounded);
 
         if (playerInput.Jump())
         {
@@ -357,7 +362,7 @@ public class PlayerController : MonoBehaviour
         if (!hasWallToSide(wallDir) || movement.grounded)
             status = Status.moving;
 
-        movement.Move(move, movement.runSpeed, 1f - s + (s / 4f));
+        movement.Move(move, movement.runSpeed, (1f - s) + (s / 4f));
     }
 
     void CheckForWallrun()
@@ -386,9 +391,9 @@ public class PlayerController : MonoBehaviour
         //Check for ladder in front of player
         Vector3 top = transform.position + (transform.right * 0.25f * dir);
         Vector3 bottom = top - (transform.up * radius);
-        top += transform.up * radius;
+        top += (transform.up * radius);
 
-        return Physics.CapsuleCastAll(top, bottom, 0.25f, transform.right * dir, 0.05f, wallrunLayer).Length >= 1;
+        return (Physics.CapsuleCastAll(top, bottom, 0.25f, transform.right * dir, 0.05f, wallrunLayer).Length >= 1);
     }
     /*********************************************************************/
 
@@ -489,7 +494,7 @@ public class PlayerController : MonoBehaviour
         if (status == Status.vaulting) return;
 
         float checkDis = 0.05f;
-        checkDis += movement.controller.velocity.magnitude / 16f; //Check farther if moving faster
+        checkDis += (movement.controller.velocity.magnitude / 16f); //Check farther if moving faster
         if(hasObjectInfront(checkDis, vaultLayer) && playerInput.Jump())
         {
             if (Physics.SphereCast(transform.position + (transform.forward * (radius - 0.25f)), 0.25f, transform.forward, out var sphereHit, checkDis, vaultLayer))
@@ -530,22 +535,6 @@ public class PlayerController : MonoBehaviour
         Vector3 top = transform.position + (transform.forward * 0.25f);
         Vector3 bottom = top - (transform.up * halfheight);
 
-        return Physics.CapsuleCastAll(top, bottom, 0.25f, transform.forward, dis, layer).Length >= 1;
+        return (Physics.CapsuleCastAll(top, bottom, 0.25f, transform.forward, dis, layer).Length >= 1);
     }
-
-    void PlaySound(AudioSource incomingSource)
-    {
-        if (incomingSource == previousSource)
-        {
-            //do nothing
-        }
-        else
-        {
-            //Debug.Log("previous " + previousSource.name);
-            previousSource.Stop();
-            incomingSource.Play();
-            previousSource = incomingSource;
-        }
-    }//end method
-
 }
