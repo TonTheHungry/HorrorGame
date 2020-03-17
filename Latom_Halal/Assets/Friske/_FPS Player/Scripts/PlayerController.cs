@@ -16,6 +16,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private LayerMask wallrunLayer;
 
+    //Theresa
+    [SerializeField] private AudioClip idle;
+    [SerializeField] private AudioClip walking;
+    [SerializeField] private AudioClip running;
+    [SerializeField] private AudioClip organ;
+
     GameObject vaultHelper;
 
     Vector3 wallNormal = Vector3.zero;
@@ -100,6 +106,39 @@ public class PlayerController : MonoBehaviour
             if (playerInput.input.magnitude > 0.02f)
                 status = Status.moving;
         }
+
+        //Theresa audio changes
+        // 
+
+        //else if ((int)status == 1)
+        //{
+        //    if (playerInput.Jump())
+        //AudioManager.Instance.PlaySFX(idle);
+
+        //   else if (playerInput.run)
+        //AudioManager.Instance.PlaySFX(running);
+
+        //    else
+        // AudioManager.Instance.PlaySFX(walking);
+
+
+        //}
+        if ((int)status == 0)
+            AudioManager.instance.Play("idle");
+        else if ((int)status ==1)
+        {
+            if (playerInput.Jump())
+                //FindObjectOfType<AudioManager>().Play("idle");
+                AudioManager.instance.Play("idle");
+            else if (playerInput.run)
+                //FindObjectOfType<AudioManager>().Play("running");
+                AudioManager.instance.Play("running");
+            else
+                //FindObjectOfType<AudioManager>().Play("walking");
+                AudioManager.instance.Play("walking");
+        }
+
+        
     }
 
     void UpdateLean()
