@@ -1,20 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject PlayerPrefab, GeneratorPrefab, MonsterPrefab;
+    public GameObject PlayerPrefab, GeneratorPrefab, MonsterPrefab, AudioManagerPrefab;
     public Material WallMat;
-    private GameObject playerObj,monsterObj,generatorObj;
+    private GameObject playerObj,monsterObj,generatorObj, audioManagerObj;
+
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Game Start!");
         GameObject map = Instantiate(new GameObject(), new Vector3(0, 0, 0), Quaternion.identity);
-        map.name = "Map Container";
         playerObj = Instantiate(PlayerPrefab, new Vector3(0,0,0), Quaternion.identity);
         generatorObj = Instantiate(GeneratorPrefab, new Vector3(0,-5,0), Quaternion.identity);
+        audioManagerObj = Instantiate(AudioManagerPrefab);
+
+        map.name = "Map Container";
         generatorObj.GetComponent<TileGenerator>().MapContainer = map;
         generatorObj.GetComponent<TileGenerator>().Node = playerObj;
         GameObject cap = GameObject.CreatePrimitive(PrimitiveType.Cube);

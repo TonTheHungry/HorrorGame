@@ -147,6 +147,8 @@ MonoBehaviour:
     type: 3}
   MonsterPrefab: {fileID: 7218838900585839554, guid: a25a44fd970ab6f428c4f14dcc5d828a,
     type: 3}
+  AudioManagerPrefab: {fileID: 1792903771888096824, guid: 4d9c6bc5c7e40204ea66db025b21adeb,
+    type: 3}
   WallMat: {fileID: 2100000, guid: 991fde8479b8dad428be0253aa567d04, type: 2}
 --- !u!4 &1608054848
 Transform:
