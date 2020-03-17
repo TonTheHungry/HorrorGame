@@ -45,3 +45,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Node: {fileID: 0}
   Tile: {fileID: 1760317606607415255, guid: 960a778dec727ae4c9e135b168e7b682, type: 3}
+  Room: {fileID: 1760317606607415255, guid: 742b7d29386e9d14b92ccde89235565c, type: 3}
+  DownRoom: {fileID: 1760317606607415255, guid: b45895860698a4e479db0968dc34b93b,
+    type: 3}
+  Generator: {fileID: 8804190607740830522}
+  MapContainer: {fileID: 0}
+  Item: {fileID: 7218838900585839554, guid: a25a44fd970ab6f428c4f14dcc5d828a, type: 3}
+  madeDownRoom: 0
+  Y_Mod: 0

@@ -62,6 +62,7 @@
      <Compile Include="Assets\Friske\_FPS Player\Scripts\PlayerInput.cs" />
      <Compile Include="Assets\Friske\_FPS Player\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\CharMovement.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Scripts\MovementController.cs" />
      <Compile Include="Assets\Scripts\TileGenerator.cs" />
