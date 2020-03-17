@@ -73,6 +73,8 @@
     <Compile Include="Assets\Scripts\CharMovement.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\MovementController.cs" />
+    <Compile Include="Assets\Scripts\PickupObject.cs" />
+    <Compile Include="Assets\Scripts\RaycastIntoScene.cs" />
     <Compile Include="Assets\Scripts\TileGenerator.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Theresa Gill/source/3D Horror Game/HorrorGame/Latom_Halal/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
