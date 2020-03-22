@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
+- path: Assets/Scenes/GameManageScene.unity
+=======
 - path: Assets/Friske/Scenes/AudioTest.unity
+>>>>>>> ff957f33053e07d890f7229f7bc5fd6ef1375223
   isLoaded: 1
   isActive: 1

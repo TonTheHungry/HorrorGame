@@ -337,7 +337,7 @@ Transform:
   m_GameObject: {fileID: 7085721664118310506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.875, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 6526632516643132702}
   m_Father: {fileID: 0}
@@ -354,7 +354,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.75
+  m_Height: 4
   m_Radius: 0.325
   m_SlopeLimit: 45
   m_StepOffset: 0.3

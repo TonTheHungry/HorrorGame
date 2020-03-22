@@ -72,6 +72,7 @@
     <Compile Include="Assets\Friske\_FPS Player\Scripts\Sound.cs" />
     <Compile Include="Assets\Scripts\CharMovement.cs" />
     <Compile Include="Assets\Scripts\Follow.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\MonsterSwitcher.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\MovementController.cs" />
