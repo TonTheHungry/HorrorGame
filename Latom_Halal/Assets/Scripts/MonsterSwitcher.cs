@@ -8,12 +8,14 @@ public class MonsterSwitcher : MonoBehaviour
     public GameObject switch2;
     public GameObject switch3;
     public int monNum = 0;
+    public Animator animator;
     private GameObject current;
 
     void Start()
     {
         current = Instantiate(switch1, transform.position, transform.rotation);
         current.transform.parent = transform;
+        animator = GetComponent<Animator>();
     }
 
    

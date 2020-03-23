@@ -19,7 +19,6 @@ public class TileGenerator : MonoBehaviour
         room = 20;
         if (Y_Mod == 0)
         {
-            Debug.Log("blep");
             originY = transform.position.y;
             newPoint = transform.position;
         }

@@ -60,25 +60,56 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Friske\_FPS Player\FixedInterpolation\InterpolatedTransform.cs" />
-    <Compile Include="Assets\Friske\_FPS Player\FixedInterpolation\InterpolatedTransformUpdater.cs" />
-    <Compile Include="Assets\Friske\_FPS Player\FixedInterpolation\InterpolationController.cs" />
-    <Compile Include="Assets\Friske\_FPS Player\Scripts\Animate\AnimateLean.cs" />
-    <Compile Include="Assets\Friske\_FPS Player\Scripts\AudioManager.cs" />
-    <Compile Include="Assets\Friske\_FPS Player\Scripts\CameraMovement.cs" />
-    <Compile Include="Assets\Friske\_FPS Player\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Friske\_FPS Player\Scripts\PlayerInput.cs" />
-    <Compile Include="Assets\Friske\_FPS Player\Scripts\PlayerMovement.cs" />
-    <Compile Include="Assets\Friske\_FPS Player\Scripts\Sound.cs" />
+    <Compile Include="Assets\Imported Assets\Friske\_FPS Player\FixedInterpolation\InterpolatedTransform.cs" />
+    <Compile Include="Assets\Imported Assets\Friske\_FPS Player\FixedInterpolation\InterpolatedTransformUpdater.cs" />
+    <Compile Include="Assets\Imported Assets\Friske\_FPS Player\FixedInterpolation\InterpolationController.cs" />
+    <Compile Include="Assets\Imported Assets\Friske\_FPS Player\Scripts\Animate\AnimateLean.cs" />
+    <Compile Include="Assets\Imported Assets\Friske\_FPS Player\Scripts\AudioManager.cs" />
+    <Compile Include="Assets\Imported Assets\Friske\_FPS Player\Scripts\CameraMovement.cs" />
+    <Compile Include="Assets\Imported Assets\Friske\_FPS Player\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Imported Assets\Friske\_FPS Player\Scripts\PlayerInput.cs" />
+    <Compile Include="Assets\Imported Assets\Friske\_FPS Player\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Imported Assets\Friske\_FPS Player\Scripts\Sound.cs" />
+    <Compile Include="Assets\Imported Assets\MonsterWoman\Scripts\AnimationChange.cs" />
+    <Compile Include="Assets\Scriptable Objects\Inventory\Scripts\DisplayInventory.cs" />
+    <Compile Include="Assets\Scriptable Objects\Inventory\Scripts\InventoryObject.cs" />
+    <Compile Include="Assets\Scriptable Objects\Items\Scripts\DefaultObject.cs" />
+    <Compile Include="Assets\Scriptable Objects\Items\Scripts\EquipmentObject.cs" />
+    <Compile Include="Assets\Scriptable Objects\Items\Scripts\FoodObject.cs" />
+    <Compile Include="Assets\Scriptable Objects\Items\Scripts\ItemObject.cs" />
     <Compile Include="Assets\Scripts\CharMovement.cs" />
     <Compile Include="Assets\Scripts\Follow.cs" />
+    <Compile Include="Assets\Scripts\ForcedAnimate.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Item.cs" />
+    <Compile Include="Assets\Scripts\MonsterHealth.cs" />
     <Compile Include="Assets\Scripts\MonsterSwitcher.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\MovementController.cs" />
     <Compile Include="Assets\Scripts\PickupObject.cs" />
     <Compile Include="Assets\Scripts\RaycastIntoScene.cs" />
+    <Compile Include="Assets\Scripts\ScriptController.cs" />
     <Compile Include="Assets\Scripts\TileGenerator.cs" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Imported Assets\3dFoin Horror Creatures\Horrid Spider\Spider animations.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
+    <None Include="Assets\Imported Assets\MonsterWoman\README.txt" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Theresa Gill/source/3D Horror Game/HorrorGame/Latom_Halal/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
