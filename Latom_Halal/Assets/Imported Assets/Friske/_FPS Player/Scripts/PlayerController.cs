@@ -84,6 +84,8 @@ public class PlayerController : MonoBehaviour
         UpdateLedgeGrabbing();
         CheckForVault();
         //Add new check to change status right here
+        //Theresa inventory
+        CheckForInventory();
 
         //Misc
         UpdateLean();
@@ -542,16 +544,25 @@ public class PlayerController : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         var item = other.GetComponent<Item>();
-        Debug.Log("getting here");
+        //Debug.Log("getting here");
         if (item)
         {
-            Debug.Log("is able to get component Item");
+            //Debug.Log("is able to get component Item");
             inventory.AddItem(item.item, 1);
             Destroy(other.gameObject);
         }
 
         
     }//end of OnTriggerEnter  
+
+    void CheckForInventory()
+    {
+        if (playerInput.saveInventory)
+            inventory.Save();
+        if (playerInput.loadInventory)
+            inventory.Load();
+
+    }
     private void OnApplicationQuit()
     {
         inventory.Container.Clear();

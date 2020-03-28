@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scriptable Objects\Items\Scripts\DefaultObject.cs" />
     <Compile Include="Assets\Scriptable Objects\Items\Scripts\EquipmentObject.cs" />
     <Compile Include="Assets\Scriptable Objects\Items\Scripts\FoodObject.cs" />
+    <Compile Include="Assets\Scriptable Objects\Items\Scripts\ItemDatabaseObject.cs" />
     <Compile Include="Assets\Scriptable Objects\Items\Scripts\ItemObject.cs" />
     <Compile Include="Assets\Scripts\CharMovement.cs" />
     <Compile Include="Assets\Scripts\Follow.cs" />

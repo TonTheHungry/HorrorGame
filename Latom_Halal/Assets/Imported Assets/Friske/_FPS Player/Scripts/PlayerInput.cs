@@ -48,6 +48,17 @@ public class PlayerInput : MonoBehaviour
         get { return Input.GetKey(KeyCode.C); }
     }
 
+    //Theresa's inventory changes
+    public bool saveInventory
+    {
+        get { return Input.GetKeyDown(KeyCode.I); }
+    }
+
+    public bool loadInventory
+    {
+        get { return Input.GetKey(KeyCode.L); }
+    }
+
     private Vector2 previous;
     private Vector2 _down;
 
