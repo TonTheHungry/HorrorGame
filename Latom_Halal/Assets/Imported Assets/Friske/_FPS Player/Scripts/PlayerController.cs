@@ -543,12 +543,12 @@ public class PlayerController : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        var item = other.GetComponent<Item>();
+        var item = other.GetComponent<GroundItem>();
         //Debug.Log("getting here");
         if (item)
         {
             //Debug.Log("is able to get component Item");
-            inventory.AddItem(item.item, 1);
+            inventory.AddItem(new Item(item.item),1);
             Destroy(other.gameObject);
         }
 
@@ -565,6 +565,6 @@ public class PlayerController : MonoBehaviour
     }
     private void OnApplicationQuit()
     {
-        inventory.Container.Clear();
+        inventory.Container.Items.Clear();
     }
 }

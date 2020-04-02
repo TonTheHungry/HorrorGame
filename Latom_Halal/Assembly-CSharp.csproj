@@ -82,7 +82,7 @@
     <Compile Include="Assets\Scripts\Follow.cs" />
     <Compile Include="Assets\Scripts\ForcedAnimate.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Item.cs" />
+    <Compile Include="Assets\Scripts\GroundItem.cs" />
     <Compile Include="Assets\Scripts\MonsterHealth.cs" />
     <Compile Include="Assets\Scripts\MonsterSwitcher.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />

@@ -12,8 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10082f9562d96e8439e63d0a19f24ee8, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1511164414925009314, guid: ce9e398b46244484799195bf196698be, type: 3}
+  Id: 1
+  uiDisplay: {fileID: 21300106, guid: d07b803c54ae9fb4ebfc1e8a13b12f4c, type: 3}
   type: 1
   description: 'Excalibur - the sword against the Enemy
 
 '
+  buffs:
+  - attribute: 2
+    value: 0
+    min: 5
+    max: 12
+  - attribute: 3
+    value: 0
+    min: 4
+    max: 20
