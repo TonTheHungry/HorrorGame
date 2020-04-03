@@ -7,6 +7,7 @@ public enum Status { idle, moving, crouching, sliding, climbingLadder, wallRunni
 public class PlayerController : MonoBehaviour
 {
     public InventoryObject inventory;
+    public GameObject InventoryScreen;
 
     public Status status;
     [SerializeField]
@@ -66,6 +67,8 @@ public class PlayerController : MonoBehaviour
         halfradius = radius / 2f;
         halfheight = height / 2f;
         rayDistance = halfheight + radius + .1f;
+
+        InventoryScreen.SetActive(false);
     }
 
     /******************************* UPDATE ******************************/
@@ -86,6 +89,7 @@ public class PlayerController : MonoBehaviour
         //Add new check to change status right here
         //Theresa inventory
         CheckForInventory();
+        CheckShowInventory();
 
         //Misc
         UpdateLean();
@@ -562,6 +566,13 @@ public class PlayerController : MonoBehaviour
         if (playerInput.loadInventory)
             inventory.Load();
 
+    }
+    void CheckShowInventory()
+    {
+        if (playerInput.showInventoryScreen)
+        {
+            InventoryScreen.SetActive(!InventoryScreen.activeInHierarchy);
+        }
     }
     private void OnApplicationQuit()
     {

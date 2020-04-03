@@ -59,6 +59,11 @@ public class PlayerInput : MonoBehaviour
         get { return Input.GetKey(KeyCode.L); }
     }
 
+    public bool showInventoryScreen
+    {
+        get { return Input.GetKey(KeyCode.Z); }
+    }
+
     private Vector2 previous;
     private Vector2 _down;
 
