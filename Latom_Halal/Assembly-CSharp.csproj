@@ -76,13 +76,18 @@
     <Compile Include="Assets\Scriptable Objects\Items\Scripts\DefaultObject.cs" />
     <Compile Include="Assets\Scriptable Objects\Items\Scripts\EquipmentObject.cs" />
     <Compile Include="Assets\Scriptable Objects\Items\Scripts\FoodObject.cs" />
+    <Compile Include="Assets\Scriptable Objects\Items\Scripts\ItemDatabaseObject.cs" />
     <Compile Include="Assets\Scriptable Objects\Items\Scripts\ItemObject.cs" />
     <Compile Include="Assets\Scripts\CharMovement.cs" />
     <Compile Include="Assets\Scripts\Follow.cs" />
     <Compile Include="Assets\Scripts\ForcedAnimate.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\Scripts\HealthbarController.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
+=======
+    <Compile Include="Assets\Scripts\GroundItem.cs" />
+>>>>>>> a58af664e1e56f6afa21e4b9b35034041f9bd21d
     <Compile Include="Assets\Scripts\MonsterHealth.cs" />
     <Compile Include="Assets\Scripts\MonsterPOV.cs" />
     <Compile Include="Assets\Scripts\MonsterSwitcher.cs" />

@@ -7,6 +7,7 @@ public enum Status { idle, moving, crouching, sliding, climbingLadder, wallRunni
 public class PlayerController : MonoBehaviour
 {
     public InventoryObject inventory;
+    public GameObject InventoryScreen;
 
     public Status status;
     [SerializeField]
@@ -66,6 +67,8 @@ public class PlayerController : MonoBehaviour
         halfradius = radius / 2f;
         halfheight = height / 2f;
         rayDistance = halfheight + radius + .1f;
+
+        InventoryScreen.SetActive(false);
     }
 
     /******************************* UPDATE ******************************/
@@ -84,6 +87,9 @@ public class PlayerController : MonoBehaviour
         UpdateLedgeGrabbing();
         CheckForVault();
         //Add new check to change status right here
+        //Theresa inventory
+        CheckForInventory();
+        CheckShowInventory();
 
         //Misc
         UpdateLean();
@@ -541,19 +547,35 @@ public class PlayerController : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        var item = other.GetComponent<Item>();
-        Debug.Log("getting here");
+        var item = other.GetComponent<GroundItem>();
+        //Debug.Log("getting here");
         if (item)
         {
-            Debug.Log("is able to get component Item");
-            inventory.AddItem(item.item, 1);
+            //Debug.Log("is able to get component Item");
+            inventory.AddItem(new Item(item.item),1);
             Destroy(other.gameObject);
         }
 
         
     }//end of OnTriggerEnter  
+
+    void CheckForInventory()
+    {
+        if (playerInput.saveInventory)
+            inventory.Save();
+        if (playerInput.loadInventory)
+            inventory.Load();
+
+    }
+    void CheckShowInventory()
+    {
+        if (playerInput.showInventoryScreen)
+        {
+            InventoryScreen.SetActive(!InventoryScreen.activeInHierarchy);
+        }
+    }
     private void OnApplicationQuit()
     {
-        inventory.Container.Clear();
+        inventory.Container.Items.Clear();
     }
 }

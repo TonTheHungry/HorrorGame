@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b0e29dfdc66a34d919414022de3e6c, type: 3}
   m_Name: Souls
   m_EditorClassIdentifier: 
-  prefab: {fileID: 118680100755460606, guid: b9c192aae8c7b6a43a77f3f309af4fbe, type: 3}
+  Id: 0
+  uiDisplay: {fileID: 21300074, guid: d07b803c54ae9fb4ebfc1e8a13b12f4c, type: 3}
   type: 2
   description: Souls who are lost in the unreal universe of their own making.
+  buffs:
+  - attribute: 0
+    value: 0
+    min: 40
+    max: 65
