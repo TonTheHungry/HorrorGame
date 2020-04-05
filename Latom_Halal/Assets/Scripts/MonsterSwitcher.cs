@@ -10,6 +10,11 @@ public class MonsterSwitcher : MonoBehaviour
     public int monNum = 0;
     public Animator animator;
     private GameObject current;
+    public Avatar Avatar1;
+    public Avatar Avatar2;
+    public Avatar Avatar3;
+
+
 
     void Start()
     {
@@ -28,6 +33,10 @@ public class MonsterSwitcher : MonoBehaviour
             Destroy(current);
             thisobject.transform.parent = transform;
             current = thisobject;
+            animator.SetBool("Spider", true);
+            animator.SetBool("Jenny", false); 
+            animator.avatar = Avatar2;
+
         }
         else if (monNum == 2)
         {
@@ -36,6 +45,9 @@ public class MonsterSwitcher : MonoBehaviour
             Destroy(current);
             thisobject.transform.parent = transform;
             current = thisobject;
+            animator.SetBool("Spider", false);
+            animator.SetBool("Jenny", true);
+            animator.avatar = Avatar3;
         }
         else
         {
@@ -44,6 +56,9 @@ public class MonsterSwitcher : MonoBehaviour
             Destroy(current);
             thisobject.transform.parent = transform;
             current = thisobject;
+            animator.SetBool("Spider", false);
+            animator.SetBool("Jenny", false);
+            animator.avatar = Avatar1;
         }
     }
 }

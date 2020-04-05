@@ -8,13 +8,14 @@ public class HealthbarController : MonoBehaviour
     public int currentHealth;
     public MonsterHealth monsterHealth;
     public Animator anim;
+    public Follow follon;
 
-   
     void Start()
     {
         currentHealth = maxHealth;
         monsterHealth = GetComponent<MonsterHealth>();
         anim = GetComponent<Animator>();
+        follon = GetComponent<Follow>();
     }
 
     void Update()
@@ -27,12 +28,13 @@ public class HealthbarController : MonoBehaviour
 
     void TakeDamage(int damage)
     {
-       // anim.Play("Hit");
+        anim.Play("Hit");
         currentHealth -= damage;
         monsterHealth.HPSlider.value = currentHealth;
 
         if (monsterHealth.HPSlider.value <= 0)
         {
+            follon.enabled = false; 
             anim.Play("Death");
         }
 
