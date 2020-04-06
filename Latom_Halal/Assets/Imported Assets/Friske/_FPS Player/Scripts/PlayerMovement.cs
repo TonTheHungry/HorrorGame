@@ -35,12 +35,10 @@ public class PlayerMovement : MonoBehaviour
     {
         // Saving component references to improve performance.
         controller = GetComponent<CharacterController>();
-    }
-    
-    private void Update()
-    {
-        if (forceTime > 0)
-            forceTime -= Time.deltaTime;
+        if (controller == null)
+        {
+            Debug.Log("CharacterController not found");
+        }
     }
 
     private void FixedUpdate()

@@ -83,7 +83,10 @@
     <Compile Include="Assets\Scripts\ForcedAnimate.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GroundItem.cs" />
+    <Compile Include="Assets\Scripts\HealthbarController.cs" />
+    <Compile Include="Assets\Scripts\JumpScare.cs" />
     <Compile Include="Assets\Scripts\MonsterHealth.cs" />
+    <Compile Include="Assets\Scripts\MonsterPOV.cs" />
     <Compile Include="Assets\Scripts\MonsterSwitcher.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\MovementController.cs" />
