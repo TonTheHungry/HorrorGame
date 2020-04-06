@@ -5,6 +5,7 @@ using UnityEngine;
 public class JumpScare : MonoBehaviour
 {
     public GameObject Mon;
+    public Transform placement;
     public Rigidbody monRig;
     public Vector3 monTran;
     public Vector3 floor;
@@ -14,6 +15,7 @@ public class JumpScare : MonoBehaviour
     {
         monRig = GetComponent<Rigidbody>();
         monTran = Mon.transform.position;
+        placement = GetComponent<Transform>();
         floor.x = 0;
         floor.y = 0;
         floor.z = 0;
@@ -29,6 +31,9 @@ public class JumpScare : MonoBehaviour
 
     void FallingScare()
     {
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+           
+        }
     }
 }
