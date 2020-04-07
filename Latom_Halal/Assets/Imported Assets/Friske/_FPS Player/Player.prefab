@@ -245,6 +245,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bedef31058aa28142829c34206f79b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: 1617a54bd77e2fd40a0975e1f773cdc2, type: 2}
+  InventoryScreen: {fileID: 5855792480755982167, guid: 935f75ce21475bc48a503e98d81fc703,
+    type: 3}
   status: 0
   vaultLayer:
     serializedVersion: 2
@@ -258,6 +261,10 @@ MonoBehaviour:
   wallrunLayer:
     serializedVersion: 2
     m_Bits: 5120
+  idle: {fileID: 8300000, guid: 6db73d6e4eb5e9c4dbbd7da6ac059004, type: 3}
+  walking: {fileID: 8300000, guid: 3ec7ab088d9f07742ad4ded454b3d911, type: 3}
+  running: {fileID: 8300000, guid: d03e9f12b8d265e4ab53757a02052e8b, type: 3}
+  organ: {fileID: 8300000, guid: addcc8b914b248446a3511e8d7a32335, type: 3}
 --- !u!114 &1149800568
 MonoBehaviour:
   m_ObjectHideFlags: 0

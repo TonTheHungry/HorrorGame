@@ -57,6 +57,15 @@ public class PlayerController : MonoBehaviour
         CreateVaultHelper();
         playerInput = GetComponent<PlayerInput>();
         movement = GetComponent<PlayerMovement>();
+        if (movement == null)
+        {
+            Debug.Log("PlayerMovement not found");
+        }
+        else
+        {
+            Debug.Log("Here");
+            Debug.Log("slope limit is " + movement.controller.slopeLimit);
+        }
 
         if (GetComponentInChildren<AnimateLean>())
             animateLean = GetComponentInChildren<AnimateLean>();
@@ -69,6 +78,7 @@ public class PlayerController : MonoBehaviour
         rayDistance = halfheight + radius + .1f;
 
         InventoryScreen.SetActive(false);
+        Debug.Log("Below Here");
     }
 
     /******************************* UPDATE ******************************/
