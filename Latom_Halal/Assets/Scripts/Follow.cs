@@ -19,7 +19,7 @@ public class Follow : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(distance);
         float step;
         // An if to get the monster to only chase if within distance.
-        if(distance.x < 15 && distance.y < 10 && distance.z < 15)
+        if(distance.x < 15 && distance.y < 15 && distance.z < 15)
         {
             step = speed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target.position, step);

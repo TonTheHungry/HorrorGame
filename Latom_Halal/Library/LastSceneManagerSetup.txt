@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/Demo.unity
-=======
-- path: Assets/Scenes/TheresaSummary.unity
->>>>>>> f280ca41fadc4f354bebf6a1bb45875812a834a8
+- path: Assets/Scenes/MonsterScene.unity
   isLoaded: 1
   isActive: 1

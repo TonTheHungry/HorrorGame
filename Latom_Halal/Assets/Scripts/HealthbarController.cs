@@ -9,6 +9,11 @@ public class HealthbarController : MonoBehaviour
     public MonsterHealth monsterHealth;
     public Animator anim;
     public Follow follon;
+    public CanvasGroup deathcanvas;
+    public float fadeDuration = 1f;
+    public float displayImageDuration = 1f;
+
+    float m_Timer;
 
     void Start()
     {
@@ -20,7 +25,7 @@ public class HealthbarController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (follon.distance.x == 1 )
         {
             TakeDamage(20);
         }
@@ -32,10 +37,12 @@ public class HealthbarController : MonoBehaviour
         currentHealth -= damage;
         monsterHealth.HPSlider.value = currentHealth;
 
-        if (monsterHealth.HPSlider.value <= 0)
+        if (monsterHealth.HPSlider.value == 0)
         {
-            follon.enabled = false; 
-            anim.Play("Death");
+            // follon.enabled = false; 
+            // anim.Play("Death");
+            m_Timer += Time.deltaTime;
+            deathcanvas.alpha = m_Timer/fadeDuration;
         }
 
     }
