@@ -27,6 +27,7 @@ public class ForcedAnimate : MonoBehaviour
         if (point2 != point1)
         {
             animator.SetBool("IsWalking", true);
+            animator.SetBool("IsAttacking", false);
             point3 = transform.position;
         }
 
@@ -34,7 +35,9 @@ public class ForcedAnimate : MonoBehaviour
         {
             animator.SetBool("IsWalking", false);
             animator.SetBool("CreepyRun", false);
+            animator.SetBool("IsAttacking", true);
             point1 = point2;
-        } 
+        }
+
     }
 }

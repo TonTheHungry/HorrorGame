@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scenes/GameManageScene.unity
+=======
+- path: Assets/Scenes/TheresaSummary.unity
+>>>>>>> f280ca41fadc4f354bebf6a1bb45875812a834a8
   isLoaded: 1
   isActive: 1

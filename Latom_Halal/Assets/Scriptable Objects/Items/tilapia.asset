@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a19cd8ef277d0c4ba682129da249c62, type: 3}
+  m_Name: tilapia
+  m_EditorClassIdentifier: 
+  Id: 2
+  uiDisplay: {fileID: 21300432, guid: d07b803c54ae9fb4ebfc1e8a13b12f4c, type: 3}
+  type: 0
+  description: 'The fish of the Sea of Galilee
+
+'
+  buffs:
+  - attribute: 1
+    value: 0
+    min: 5
+    max: 50

@@ -1,34 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MonsterHealth : MonoBehaviour
 {
-    public float monHealth;
-   
+    public Slider HPSlider;
 
-    void Start()
+    public void SetMaxHealth(int health)
     {
-        monHealth = 100;
+        HPSlider.maxValue = health;
+        HPSlider.value = health;
     }
 
-    void Update()
+    public void SetHealth(int health)
     {
-        if (monHealth >= 75)
-        {
-           
-        }
-        else if (monHealth < 75 && monHealth >= 51)
-        {
-
-        }
-        else if (monHealth < 51 && monHealth >= 26)
-        {
-
-        }
-        else
-        {
-
-        }
+        HPSlider.value = health;
     }
+
 }

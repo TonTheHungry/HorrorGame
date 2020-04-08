@@ -6,6 +6,9 @@ public enum Status { idle, moving, crouching, sliding, climbingLadder, wallRunni
 
 public class PlayerController : MonoBehaviour
 {
+    public InventoryObject inventory;
+    public GameObject InventoryScreen;
+
     public Status status;
     [SerializeField]
     private LayerMask vaultLayer;
@@ -54,6 +57,15 @@ public class PlayerController : MonoBehaviour
         CreateVaultHelper();
         playerInput = GetComponent<PlayerInput>();
         movement = GetComponent<PlayerMovement>();
+        if (movement == null)
+        {
+            Debug.Log("PlayerMovement not found");
+        }
+        else
+        {
+            Debug.Log("Here");
+            Debug.Log("slope limit is " + movement.controller.slopeLimit);
+        }
 
         if (GetComponentInChildren<AnimateLean>())
             animateLean = GetComponentInChildren<AnimateLean>();
@@ -64,6 +76,9 @@ public class PlayerController : MonoBehaviour
         halfradius = radius / 2f;
         halfheight = height / 2f;
         rayDistance = halfheight + radius + .1f;
+
+        InventoryScreen.SetActive(false);
+        Debug.Log("Below Here");
     }
 
     /******************************* UPDATE ******************************/
@@ -82,6 +97,9 @@ public class PlayerController : MonoBehaviour
         UpdateLedgeGrabbing();
         CheckForVault();
         //Add new check to change status right here
+        //Theresa inventory
+        CheckForInventory();
+        CheckShowInventory();
 
         //Misc
         UpdateLean();
@@ -125,7 +143,7 @@ public class PlayerController : MonoBehaviour
         //}
         if ((int)status == 0)
             AudioManager.instance.Play("idle");
-        else if ((int)status ==1)
+        else if ((int)status == 1)
         {
             if (playerInput.Jump())
                 //FindObjectOfType<AudioManager>().Play("idle");
@@ -138,7 +156,7 @@ public class PlayerController : MonoBehaviour
                 AudioManager.instance.Play("walking");
         }
 
-        
+
     }
 
     void UpdateLean()
@@ -227,7 +245,7 @@ public class PlayerController : MonoBehaviour
     void CheckSliding()
     {
         //Check to slide when running
-        if(playerInput.crouch && canSlide())
+        if (playerInput.crouch && canSlide())
         {
             slideDir = transform.forward;
             movement.controller.height = halfheight;
@@ -270,7 +288,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!movement.grounded || (int)status > 2) return;
 
-        if(playerInput.crouch)
+        if (playerInput.crouch)
         {
             if (status != Status.crouching)
                 Crouch();
@@ -378,7 +396,7 @@ public class PlayerController : MonoBehaviour
 
         if (wall == 0) return;
 
-        if(Physics.Raycast(transform.position + (transform.right * wall * radius), transform.right * wall, out var hit, halfradius, wallrunLayer))
+        if (Physics.Raycast(transform.position + (transform.right * wall * radius), transform.right * wall, out var hit, halfradius, wallrunLayer))
         {
             wallDir = wall;
             wallNormal = Vector3.Cross(hit.normal, Vector3.up) * -wallDir;
@@ -480,7 +498,7 @@ public class PlayerController : MonoBehaviour
         Vector3 localPos = vaultHelper.transform.InverseTransformPoint(transform.position);
         Vector3 move = (vaultDir + (Vector3.up * -(localPos.z - radius) * height)).normalized;
 
-        if(localPos.z > halfheight)
+        if (localPos.z > halfheight)
         {
             movement.controller.height = height;
             status = Status.moving;
@@ -495,14 +513,14 @@ public class PlayerController : MonoBehaviour
 
         float checkDis = 0.05f;
         checkDis += (movement.controller.velocity.magnitude / 16f); //Check farther if moving faster
-        if(hasObjectInfront(checkDis, vaultLayer) && playerInput.Jump())
+        if (hasObjectInfront(checkDis, vaultLayer) && playerInput.Jump())
         {
             if (Physics.SphereCast(transform.position + (transform.forward * (radius - 0.25f)), 0.25f, transform.forward, out var sphereHit, checkDis, vaultLayer))
             {
                 if (Physics.SphereCast(sphereHit.point + (Vector3.up * halfheight), radius, Vector3.down, out var hit, halfheight - radius, vaultLayer))
                 {
                     //Check above the point to make sure the player can fit
-                    if (Physics.SphereCast(hit.point + (Vector3.up * radius), radius, Vector3.up, out var trash, height-radius))
+                    if (Physics.SphereCast(hit.point + (Vector3.up * radius), radius, Vector3.up, out var trash, height - radius))
                         return; //If cannot fit the player then do not vault
 
                     vaultOver = hit.point;
@@ -536,5 +554,38 @@ public class PlayerController : MonoBehaviour
         Vector3 bottom = top - (transform.up * halfheight);
 
         return (Physics.CapsuleCastAll(top, bottom, 0.25f, transform.forward, dis, layer).Length >= 1);
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        var item = other.GetComponent<GroundItem>();
+        //Debug.Log("getting here");
+        if (item)
+        {
+            //Debug.Log("is able to get component Item");
+            inventory.AddItem(new Item(item.item),1);
+            Destroy(other.gameObject);
+        }
+
+        
+    }//end of OnTriggerEnter  
+
+    void CheckForInventory()
+    {
+        if (playerInput.saveInventory)
+            inventory.Save();
+        if (playerInput.loadInventory)
+            inventory.Load();
+
+    }
+    void CheckShowInventory()
+    {
+        if (playerInput.showInventoryScreen)
+        {
+            InventoryScreen.SetActive(!InventoryScreen.activeInHierarchy);
+        }
+    }
+    private void OnApplicationQuit()
+    {
+        inventory.Container.Items.Clear();
     }
 }
