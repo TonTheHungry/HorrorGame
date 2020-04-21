@@ -9,7 +9,12 @@ public class JumpScare : MonoBehaviour
     public Rigidbody monRig;
     public Vector3 monTran;
     public Vector3 floor;
-    
+    Random scareTrigger;
+    public int spiTerror;
+    public int genTerror;
+    public int illTerror;
+
+        
     // Sets up the variables.
     void Start()
     {
@@ -26,6 +31,19 @@ public class JumpScare : MonoBehaviour
         if (monTran.y < 1)
         {
             monTran.y = 1;
+        }
+
+        if (spiTerror > genTerror && spiTerror > illTerror)
+        {
+
+        }
+        if (illTerror > genTerror && spiTerror < illTerror)
+        {
+
+        }
+        if (spiTerror < genTerror && genTerror > illTerror)
+        {
+
         }
     }
 

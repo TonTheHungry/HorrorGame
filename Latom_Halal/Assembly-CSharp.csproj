@@ -95,6 +95,7 @@
     <Compile Include="Assets\Scripts\PickupObject.cs" />
     <Compile Include="Assets\Scripts\RaycastIntoScene.cs" />
     <Compile Include="Assets\Scripts\ScriptController.cs" />
+    <Compile Include="Assets\Scripts\StableChecker.cs" />
     <Compile Include="Assets\Scripts\Teleport.cs" />
     <Compile Include="Assets\Scripts\TileGenerator.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
