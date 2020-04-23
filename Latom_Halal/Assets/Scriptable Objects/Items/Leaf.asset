@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a19cd8ef277d0c4ba682129da249c62, type: 3}
   m_Name: Leaf
   m_EditorClassIdentifier: 
-  Id: 0
+  Id: 3
   uiDisplay: {fileID: 21300294, guid: d07b803c54ae9fb4ebfc1e8a13b12f4c, type: 3}
   type: 0
   description: 'No buffs for this item so it should stack
