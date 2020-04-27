@@ -619,7 +619,7 @@ PrefabInstance:
     - target: {fileID: 3649930488599674376, guid: e5142824b15ce324c906d2007c0e0b81,
         type: 3}
       propertyPath: Y_SPACE_BETWEEN_ITEMS
-      value: 27
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 3649930488599674378, guid: e5142824b15ce324c906d2007c0e0b81,
         type: 3}
