@@ -47,9 +47,9 @@ MonoBehaviour:
   sounds:
   - name: walking
     clip: {fileID: 8300000, guid: 3ec7ab088d9f07742ad4ded454b3d911, type: 3}
-    volume: 1
+    volume: 0.5
     volumeVariance: 0
-    pitch: 0
+    pitch: 1
     pitchVariance: 0
     loop: 1
     mixerGroup: {fileID: 0}
@@ -64,10 +64,10 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: running
-    clip: {fileID: 8300000, guid: d03e9f12b8d265e4ab53757a02052e8b, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 3ec7ab088d9f07742ad4ded454b3d911, type: 3}
+    volume: 0.5
     volumeVariance: 0
-    pitch: 2.8
+    pitch: 1.5
     pitchVariance: 0
     loop: 1
     mixerGroup: {fileID: 0}

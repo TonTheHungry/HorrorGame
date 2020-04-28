@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 moveDirection = Vector3.zero;
     [HideInInspector]
     public Vector3 contactPoint;
-    [HideInInspector]
     public CharacterController controller;
     [HideInInspector]
     public bool playerControl = false;
