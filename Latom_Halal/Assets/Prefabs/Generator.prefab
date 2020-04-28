@@ -51,5 +51,7 @@ MonoBehaviour:
   Generator: {fileID: 8804190607740830522}
   MapContainer: {fileID: 0}
   Item: {fileID: 7218838900585839554, guid: a25a44fd970ab6f428c4f14dcc5d828a, type: 3}
+  Rose: {fileID: 2474370483409225266, guid: b576b96c27acb454e97acab4ecf90dc3, type: 3}
+  Sword: {fileID: 9034681593632374835, guid: 6817475c42b382445bf2afb303bd8258, type: 3}
   madeDownRoom: 0
   Y_Mod: 0

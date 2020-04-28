@@ -579,10 +579,13 @@ public class PlayerController : MonoBehaviour
     }
     void CheckShowInventory()
     {
-        if (playerInput.showInventoryScreen)
-        {
-            InventoryScreen.SetActive(!InventoryScreen.activeInHierarchy);
-        }
+        //Theresa - pressing z is not working.  For now, always show the screen
+        //if (playerInput.showInventoryScreen)
+        //{
+        //    InventoryScreen.SetActive(!InventoryScreen.activeInHierarchy);
+        //}
+        InventoryScreen.SetActive(InventoryScreen);
+        
     }
     private void OnApplicationQuit()
     {

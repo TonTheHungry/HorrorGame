@@ -2,7 +2,7 @@
 
 public class TileGenerator : MonoBehaviour
 {
-    public GameObject Node,Tile,Room,DownRoom,Generator,MapContainer,Item;
+    public GameObject Node,Tile,Room,DownRoom,Generator,MapContainer,Item,Rose,Sword;
     public bool madeDownRoom;
     public int Y_Mod = 0;
     private Vector3 plrPosition;
@@ -11,6 +11,7 @@ public class TileGenerator : MonoBehaviour
     GameObject previousTile;
     private int left, right, room, r, t;
     private float originY;
+    private int count, swordcount = 0;
 
 
     // Start is called before the first frame update
@@ -37,6 +38,9 @@ public class TileGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float newScale = 0.05f;
+        float swordScale = 0.1f;
+
         plrPosition = Node.transform.position;
         if ((plrPosition - newPoint).sqrMagnitude < 10000000)
         {
@@ -48,17 +52,49 @@ public class TileGenerator : MonoBehaviour
             {
                 if (!GameObject.Find("Item"))
                 {
-                    GameObject _item = Instantiate(Item, generatedTile.transform.position, Quaternion.identity);
-                    _item.name = "Item";
-                    Debug.Log("ITEM SPAWNED");
+                    //GameObject _item = Instantiate(Item, generatedTile.transform.position, Quaternion.identity);
+                    //_item.name = "Item";
+                    //Debug.Log("ITEM SPAWNED");
                 }
                 else
                 {
-                    Debug.Log("ITEm ALREADY SPAWNED");
+                    //Debug.Log("ITEm ALREADY SPAWNED");
                 }
             }
         }
-    }
+
+        //Theresa.  Put a rose in every 4th tile
+        //if (generatedTile.name == "Left" && count == 1)
+        if (count == 4)
+        {
+            Rose.transform.localScale = new Vector3(newScale, newScale, newScale);
+            //Vector3                                                     back/forth  up/down  left/right
+            Rose.transform.position = generatedTile.transform.position + new Vector3(-4, 0, -4);
+            GameObject _rose = Instantiate(Rose, Rose.transform.position, Quaternion.identity);
+            _rose.name = "Rose";
+            count = 0;
+        }
+        
+        else
+        {
+            count++;
+        }
+        
+        if (swordcount == 10)
+        {
+            Sword.transform.localScale = new Vector3(swordScale, swordScale, swordScale);
+            Sword.transform.position = generatedTile.transform.position + new Vector3(-1, 1, 1);
+            GameObject _sword = Instantiate(Sword, Sword.transform.position, Quaternion.identity);
+            _sword.name = "Sword";
+            swordcount = 0;
+        }
+        else
+        {
+            swordcount++;
+        }
+
+
+    }//end of Update
 
     private void makeRoomType(int num)
     {
@@ -250,6 +286,8 @@ public class TileGenerator : MonoBehaviour
         gen.GetComponent<TileGenerator>().originY = originY;
         gen.GetComponent<TileGenerator>().Y_Mod = Y_Mod - 30;
         gen.GetComponent<TileGenerator>().Item = Item;
+        gen.GetComponent<TileGenerator>().Item = Rose;
+        gen.GetComponent<TileGenerator>().Item = Sword;
         gen.GetComponent<TileGenerator>().Generator = Generator;
         gen.GetComponent<TileGenerator>().MapContainer = MapContainer;
         gen.GetComponent<TileGenerator>().Node = Node;
