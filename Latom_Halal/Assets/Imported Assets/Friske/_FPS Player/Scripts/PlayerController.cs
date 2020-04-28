@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     public InventoryObject inventory;
     public GameObject InventoryScreen;
+    public bool HasSword = false;
 
     public Status status;
     [SerializeField]
@@ -63,8 +64,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Here");
-            Debug.Log("slope limit is " + movement.controller.slopeLimit);
         }
 
         if (GetComponentInChildren<AnimateLean>())
@@ -579,13 +578,7 @@ public class PlayerController : MonoBehaviour
     }
     void CheckShowInventory()
     {
-        //Theresa - pressing z is not working.  For now, always show the screen
-        //if (playerInput.showInventoryScreen)
-        //{
-        //    InventoryScreen.SetActive(!InventoryScreen.activeInHierarchy);
-        //}
-        InventoryScreen.SetActive(InventoryScreen);
-        
+        InventoryScreen.SetActive(playerInput.showInventoryScreen);
     }
     private void OnApplicationQuit()
     {

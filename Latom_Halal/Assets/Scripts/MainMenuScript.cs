@@ -9,6 +9,7 @@ public class MainMenuScript : MonoBehaviour {
     public GameObject mainMenuScreen;
     public GameObject instructionsScreen;
     public GameObject gameOverScreen;
+    public GameObject winScreen;
 
     void Awake() {
         mainMenuScreen.SetActive(true);
@@ -26,6 +27,11 @@ public class MainMenuScript : MonoBehaviour {
     public void GameOver()
     {
         gameOverScreen.SetActive(true);
+    }
+
+    public void GameWon()
+    {
+        winScreen.SetActive(true);
     }
 
     public void QuitGame() {

@@ -6,15 +6,14 @@ public class GroundItem : MonoBehaviour
 {
     
     public ItemObject item;
-    // In this case, the collider is the player.  This object is the item. 
-    //void OnTriggerEnter(Collider collider)
-    //{
-    //    Debug.Log("here");
-    //    if (collider.gameObject.tag == "Player")
-    //    {
-    //        Debug.Log("Item picked up");
-    //        Destroy(gameObject);
-    //    }
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.tag == "Player" && this.name.Contains("Sword"))
+        {
+            collider.gameObject.GetComponent<PlayerController>().HasSword = true;
+            Debug.Log("Item picked up");
+            Destroy(gameObject);
+        }
 
-    //}
+    }
 }

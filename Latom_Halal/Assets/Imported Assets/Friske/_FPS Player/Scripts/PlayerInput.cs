@@ -40,12 +40,12 @@ public class PlayerInput : MonoBehaviour
 
     public bool crouch
     {
-        get { return Input.GetKeyDown(KeyCode.C); }
+        get { return false; }
     }
 
     public bool crouching
     {
-        get { return Input.GetKey(KeyCode.C); }
+        get { return false; }
     }
 
     //Theresa's inventory changes
@@ -61,7 +61,7 @@ public class PlayerInput : MonoBehaviour
 
     public bool showInventoryScreen
     {
-        get { return Input.GetKey(KeyCode.Z); }
+        get { return Input.GetKey(KeyCode.Tab); }
     }
 
     private Vector2 previous;

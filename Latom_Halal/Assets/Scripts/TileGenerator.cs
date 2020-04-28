@@ -72,6 +72,7 @@ public class TileGenerator : MonoBehaviour
             Rose.transform.position = generatedTile.transform.position + new Vector3(-4, 0, -4);
             GameObject _rose = Instantiate(Rose, Rose.transform.position, Quaternion.identity);
             _rose.name = "Rose";
+            _rose.transform.parent = MapContainer.transform;
             count = 0;
         }
         
@@ -79,18 +80,14 @@ public class TileGenerator : MonoBehaviour
         {
             count++;
         }
-        
-        if (swordcount == 10)
+        int swordChance = Random.Range(0, 100);
+        if (swordcount < 1 && swordChance == 10)
         {
+            swordcount++;
             Sword.transform.localScale = new Vector3(swordScale, swordScale, swordScale);
             Sword.transform.position = generatedTile.transform.position + new Vector3(-1, 1, 1);
             GameObject _sword = Instantiate(Sword, Sword.transform.position, Quaternion.identity);
             _sword.name = "Sword";
-            swordcount = 0;
-        }
-        else
-        {
-            swordcount++;
         }
 
 
